@@ -2,11 +2,10 @@
 
 A repo of tests suites for CommandBox
 
-# Servers
-
-Test all of the server functions of CommandBox
 
 ## Single Site
+
+Test all of the server functions of CommandBox
 
 ### Matrix
 We need every combination of each of these items
