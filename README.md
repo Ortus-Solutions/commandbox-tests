@@ -251,7 +251,7 @@ Create a server with two sites
 - site1
 - site2
 
-Add the following hosts file entires
+Add the following hosts file entries
 - site1.com
 - www.site1.com
 - site2.com
