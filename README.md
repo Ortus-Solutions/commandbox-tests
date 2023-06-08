@@ -244,3 +244,27 @@ The following URLs SHOULD match to the following sites
 - http://admin.site1.com - site1
 - http://site5.com - site1
 - http://site15.com - site not found 404
+
+## SSL SNI
+
+Create a server with two sites
+- site1
+- site2
+
+Add the following hosts file entires
+- site1.com
+- www.site1.com
+- site2.com
+- admin.site2.com
+
+Add the following bindings
+- `sites.site1.ssl` on port 443 with `hostAlias` of `site1.com,www.site1.com` and an SSL cert with a common name of `site1.com` and a SAN of `www.site1.com`
+- `sites.site2.ssl` on port 443 with `hostAlias` of `site2.com,*.site2.com` and a wildcard SSL cert with a common name of `site2.com` and a SAN of `*.site2.com`
+
+We will need to figure out the openssl commands to generate these certs.  They can share the same CA cert if we want.
+
+The following URLs should match the following sites
+- https://site1.com - site1 and the site1 SSL Cert
+- https://www.site1.com - site1 and the site1 SSL Cert
+- https://site2.com - site2 and the site2 SSL Cert
+- https://admin.site2.com - site2 and the site2 SSL Cert
