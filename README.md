@@ -118,15 +118,15 @@ Need to verify that each setting for each site is picked up separately.  Each si
 - at least one custom static file extension (.log)
 
 
-## Multi Site with .site.json files found by web root convention
+## Multi Site with `.site.json` files found by web root convention
 
 Copy the `Multi Site Basic` test, but move all the site-specific settings out of the `server.json` except the web root of each site. Put the site-specific settings should be put in a `.site.json` file in each web root.  Edit the relative virtual directory path to now be relative to the webroot (which is the folder the `.site.json` file lives in).  All the same tests for `Multi Site Basic` should work here too.
 
-## Multi Site with explicit siteConfigFile
+## Multi Site with explicit `siteConfigFile`
 
 Copy the `Multi Site Basic` test, but move all the site-specific settings out of the `server.json` INCLUDING the web root of each site. Put the site-specific settings should be put in `site1.json`, `site2.json`, etc files in a folder above the web roots.   Edit the relative virtual directory path to now be relative to the folder each `.site.json` file lives in.  The `sites` block in the main `server.json` should use the `siteConfigFile` key to point to the file for each site.  All the same tests for `Multi Site Basic` should work.here too.
 
-## Multi Site with siteConfigFiles file glob pattern
+## Multi Site with `siteConfigFiles` file glob pattern
 
 Copy the `Multi Site Basic` test, but move all the site-specific settings out of the `server.json` INCLUDING the web root of each site. Put the site-specific settings should be put in `site1.json`, `site2.json`, etc files in a `sites-available` folder above the web roots.   Remove the `sites` block entirely from the main `server.json` and set a `siteConfigFiles` key with the value `sites-available/*.json`.  Edit the relative virtual directory path to now be relative to the folder the `.site.json` files lives in.  All the same tests for `Multi Site Basic` should work.here too.
 
