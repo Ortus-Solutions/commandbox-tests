@@ -242,7 +242,7 @@ The following URLs SHOULD match to the following sites
 - ajp://site3.com:8010 - site not found 404
 - ajp://site3.com:8011 - site not found 404
 
-## With wildcard bindings
+## Multi Site with Wildcard bindings
 
 [Test Files](multi-site-wildcard-bindings)
 
@@ -256,14 +256,20 @@ Add host file entries for
 - site5.com
 - site15.com
 
-For this test, define the following settings in an array in the `web.hostAlias` in the `server.json`.
+Create 2 sites
+- site1
+- site2
+
+Create the following site1 bindings
+- `sites.site1.HTTP` binding on port 80
+
+Define the following settings in an array in `sites.site1.hostAlias` in the `server.json`.
 - site1.com
 - site1.*
 - *.site1.com
 - ~^site[0-9]\.com$
 
-Create the following top level bindings (will be shared by all sites)
-- legacy `web.HTTP` binding on port 80
+Site 2 will have no bindings, which is fine.  We only it to kick into multi-site mode so bindings are actually processed.
 
 The following URLs SHOULD match to the following sites
 - http://site1.com - site1

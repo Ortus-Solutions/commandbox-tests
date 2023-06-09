@@ -1,3 +1,20 @@
 {
-    "name" : "commandbox-test-multi-site-wildcard-bindings"
+    "name":"commandbox-test-multi-site-wildcard-bindings",
+    "sites":{
+        "site1":{
+            "HTTP":{
+                "port":"80"
+            },
+            "hostAlias":[
+                "site1.com",
+                "site1.*",
+                "*.site1.com",
+                "~^site[0-9]\\.com$"
+            ],
+            "webroot":"site1"
+        },
+        "site2":{
+            "webroot":"site2"
+        }
+    }
 }
