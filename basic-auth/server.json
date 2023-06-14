@@ -1,3 +1,20 @@
 {
-    "name" : "commandbox-test-basic-auth"
+    "name":"commandbox-test-basic-auth",
+    "web":{
+        "bindings":{
+            "http":{
+                "host":"site1.com",
+                "listen":"80"
+            }
+        },
+        "security":{
+            "authPredicate":"path-prefix-nocase(secret)",
+            "basicAuth":{
+                "enable":"true",
+                "users":{
+                    "brad":"wood"
+                }
+            }
+        }
+    }
 }
