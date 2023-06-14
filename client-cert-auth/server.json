@@ -1,3 +1,14 @@
 {
-    "name" : "commandbox-test-client-cert-auth"
+  "name": "commandbox-test-client-cert-auth",
+  "web": {
+    "bindings": {
+      "ssl": {
+        "host": "site1.com",
+        "listen": "443"
+      }
+    },
+    "security": {
+      "authPredicate": "path-prefix-nocase(secret)"
+    }
+  }
 }
