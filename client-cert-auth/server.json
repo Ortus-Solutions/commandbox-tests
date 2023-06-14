@@ -1,14 +1,18 @@
 {
-  "name": "commandbox-test-client-cert-auth",
-  "web": {
-    "bindings": {
-      "ssl": {
-        "host": "site1.com",
-        "listen": "443"
-      }
-    },
-    "security": {
-      "authPredicate": "path-prefix-nocase(secret)"
+    "name":"commandbox-test-client-cert-auth",
+    "web":{
+        "bindings":{
+            "ssl":{
+                "clientCert":{
+                    "CACertFiles":"../certs/TestRootCertificate.cer",
+                    "mode":"REQUIRED"
+                },
+                "host":"site1.com",
+                "listen":"443"
+            }
+        },
+        "security":{
+            "authPredicate":"path-prefix-nocase(secret)"
+        }
     }
-  }
 }
