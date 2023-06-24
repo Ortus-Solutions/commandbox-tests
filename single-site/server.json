@@ -1,3 +1,35 @@
 {
-    "name" : "commandbox-test-single-site"
+    "name":"commandbox-test-single-site",
+    "web":{
+        "accessLogEnable":"true",
+        "AJP":{
+            "enable":"true",
+            "port":"8009"
+        },
+        "aliases":{
+            "/js":"javascript"
+        },
+        "allowedExt":"log",
+        "errorPages":{
+            "404":"404.cfm"
+        },
+        "GZIPEnable":"true",
+        "gzipPredicate":"regex('^.*\\.txt$')",
+        "host":"singleSite.com",
+        "HTTP":{
+            "port":"80"
+        },
+        "mimeTypes":{
+            "log":"text/plain"
+        },
+        "rules":[
+            "path(/tea)->set-error(418)"
+        ],
+        "rulesFile":".rules.txt",
+        "SSL":{
+            "enable":"true",
+            "port":"443"
+        },
+        "welcomeFiles":"custom.cfm,index.cfm"
+    }
 }
