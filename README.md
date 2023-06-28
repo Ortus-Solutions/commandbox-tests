@@ -36,7 +36,6 @@ Test the basic legacy behavior of starting a single site server
 Tests:
 - https://singlesite.com/ returns "home page"
 - http://singlesite.com/ returns "home page"
-- TODO: test AJP
 - http://singlesite.com/js/scripts.js returns "JS file" with NO content-encoding header
 - http://singlesite.com/downloads/file.txt should have `Content-Encoding: gzip` response header
 - http://singlesite.com/not-found should return `Page is missing: /not-found` and 404 status code
@@ -48,6 +47,10 @@ Tests:
 - http://singlesite.com/downloads/ returns 200 and directory listing in development profile, 401 in production profile
 - http://singlesite.com/lucee/admin/server.cfm returns 200 and Lucee admin in devlopment profile, 404 in production profile
 - http://singlesite.com/server.json should return `Page is missing: /server.json` and 404 status code
+
+Run `docker-compose -f apache-ajp-proxy/docker-compose.yml up -d` and re-test al the URLs above, but on port 8080, which uses the AJP proxy.
+Then run `docker-compose -f apache-ajp-proxy/docker-compose.yml down`.
+
 
 ## Custom SSL Cert
 

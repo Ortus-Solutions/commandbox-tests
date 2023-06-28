@@ -1,5 +1,6 @@
 {
     "name":"commandbox-test-single-site",
+    "hostAlias":"singleSite.com",
     "web":{
         "accessLogEnable":"true",
         "AJP":{
@@ -15,7 +16,7 @@
         },
         "GZIPEnable":"true",
         "gzipPredicate":"regex('^.*\\.txt$')",
-        "host":"singleSite.com",
+        "host":"0.0.0.0",
         "HTTP":{
             "port":"80"
         },

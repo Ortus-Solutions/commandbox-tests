@@ -1,0 +1,51 @@
+- name: Install apache
+  apt: name=apache2 state=present
+
+- name: Install apache auth modules
+  apt: name={{ item }} state=present
+  with_items:
+  - libapache2-mod-jk
+  - libapache2-mod-proxy-uwsgi
+  #- libapache2-mod-proxy-msrpc
+  notify: apache2 restart
+
+- name: Disable default virtualhost
+  file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
+  notify: apache2 restart
+
+- name: Enable proxy related modules
+  apache2_module: name={{ item }} state=present
+  with_items:
+  - alias
+  - ratelimit
+  - rewrite
+  - headers
+  - proxy_ajp
+  - proxy_balancer
+  - proxy_connect
+  - proxy_express
+  - proxy_ftp
+  - proxy_html
+  - proxy_http
+  - proxy_scgi
+  - proxy_wstunnel
+  - ssl
+  - vhost_alias
+  - xml2enc
+  notify: apache2 restart
+
+- name: Enable auth related modules
+  apache2_module: name={{ item }} state=present
+  with_items:
+  - auth_digest
+  - authnz_ldap
+  - ldap
+  notify: apache2 restart
+
+- name: Enable cache related modules
+  apache2_module: name={{ item }} state=present
+  with_items:
+  - cache_disk
+  - cache
+  - file_cache
+  notify: apache2 restart

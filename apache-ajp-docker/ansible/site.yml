@@ -1,0 +1,5 @@
+- name: Deploy reverse proxy 
+  hosts: all
+  connection: local
+  roles:
+  - apache-reverse-proxy
