@@ -5,7 +5,8 @@
         "accessLogEnable":"true",
         "AJP":{
             "enable":"true",
-            "port":"8009"
+            "port":"8009",
+            "secret":"commandboxisawesome"
         },
         "aliases":{
             "/js":"javascript"
@@ -32,5 +33,10 @@
             "port":"443"
         },
         "welcomeFiles":"custom.cfm,index.cfm"
-    }
+    },
+    "scripts":{
+        "ajp-up":"!docker-compose -f apache-ajp-proxy/docker-compose.yml up -d --build",
+        "ajp-down":"!docker-compose -f apache-ajp-proxy/docker-compose.yml down"
+    },
+    "tra":true
 }
