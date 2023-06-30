@@ -1,3 +1,7 @@
 {
-    "name" : "commandbox-test-case-sensitivity"
+    "name":"commandbox-test-case-sensitivity",
+    "web":{
+        "caseSensitivePaths":"false",
+        "host":"site1.com"
+    }
 }

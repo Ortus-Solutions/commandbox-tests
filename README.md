@@ -22,7 +22,7 @@ Test the basic legacy behavior of starting a single site server
 - Single server.json file
 - HTTP binding
 - SSL Binding (default auto-gen cert)
-- AJP binding with AJP secret (recommend including dockerFile for Apache server with basic AJP proxy)
+- AJP binding with AJP secret
 - At least one virtual directory defined
 - GZip predicate
 - custom error page (404.cfm)
@@ -108,6 +108,10 @@ We need every combination of each of these items
 - `web.caseSensitivePaths` enabled
 - `web.caseSensitivePaths` disabled
 
+- http://site1.com:65384/bradWOOD.txt should always return "bradWOOD"
+- http://site1.com:65384/bradwood.txt should return 404 when case sensitivity is on
+- http://site1.com:65384/bradwood.txt should return "bradWOOD" when case sensitivity is off
+
 ## ModCFML
 
 [Test Files](modCFML)
@@ -166,7 +170,9 @@ Need to verify that each setting for each site is picked up separately. Each sit
 - at least one custom server rule
 - at least one custom MIME type (.log -> text/plain)
 - custom welcome files (custom.cfm,index.cfm)
+- At least one allowed extension (.log)
 - at least one custom static file extension (.log)
+
 
 ## Multi Site with `.site.json` files found by web root convention
 
