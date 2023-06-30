@@ -94,6 +94,9 @@ We need every combination of each of these items
 /secret          // requires client cert with specific issuer or subject
 ```
 
+- https://site1.com/public returns "client cert auth this is public"
+- https://site1.com/secret returns 403 status code
+
 ## Case Sensitivity
 
 [Test Files](case-sensitivity)

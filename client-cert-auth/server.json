@@ -5,6 +5,8 @@
             "ssl":{
                 "clientCert":{
                     "CACertFiles":"../certs/TestRootCertificate.cer",
+                    "catruststorefile":"../certs/TestRootCertificate.pfx",
+                    "CATrustStorePass":"test",
                     "mode":"REQUIRED"
                 },
                 "host":"site1.com",
@@ -12,7 +14,11 @@
             }
         },
         "security":{
-            "authPredicate":"path-prefix-nocase(secret)"
+            "authPredicate":"path-prefix-nocase(secret)",
+            "clientCert":{
+                "enable":"true",
+                "subjectDNs":"CN = aDifferentCommonName"
+            }
         }
     }
 }
