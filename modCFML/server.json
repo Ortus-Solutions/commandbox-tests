@@ -1,3 +1,20 @@
 {
-    "name" : "commandbox-test-modCFML"
+    "ModCFML":{
+        "enable":"true",
+        "sharedKey":"modcfmlsecret"
+    },
+    "name":"commandbox-test-modCFML",
+    "web":{
+        "bindings":{
+            "AJP":{
+                "listen":"8009",
+                "secret":"ajpsecret"
+            }
+        }
+    },
+    "scripts":{
+        "ajp-up":"!docker-compose -f apache-ajp-proxy/docker-compose.yml up -d --build",
+        "ajp-down":"!docker-compose -f apache-ajp-proxy/docker-compose.yml down",
+        "ajp-restart":"!docker-compose -f apache-ajp-proxy/docker-compose.yml restart"
+    }
 }

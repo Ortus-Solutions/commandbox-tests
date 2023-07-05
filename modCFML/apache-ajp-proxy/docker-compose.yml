@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+
+  apache2-reverse-proxy:
+    build: ../../apache-ajp-docker/
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - ./sites-enabled:/etc/apache2/sites-enabled
+      #- /some/place/logs:/var/log/apache2
+      #- /some/place/certs:/etc/apache2/certs

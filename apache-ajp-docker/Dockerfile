@@ -15,10 +15,9 @@ RUN ansible-playbook -i "localhost," -c local /etc/ansible/site.yml
 
 RUN apt-get -y remove ansible python3-apt;apt-get -y autoremove
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
 RUN echo "Listen 8080" > /etc/apache2/ports.conf
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+
 
 COPY docker-entrypoint.sh /
 

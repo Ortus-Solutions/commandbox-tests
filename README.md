@@ -136,7 +136,13 @@ Set up Apache
 - To use ModCFML secret
 - Create 3 Apache virtual hosts pointing to 3 web roots
 
-Ensure you're able to hit all 3 sites through Apache.
+Here are the tests
+- http://site1.com:8080/ returns "Site 1"
+- http://site1.com:8080/static.txt returns "site1 static file"
+- http://site2.com:8080/ returns "Site 2"
+- http://site2.com:8080/static.txt returns "site2 static file"
+- http://site3.com:8080/ returns "Site 3"
+- http://site3.com:8080/static.txt returns "site3 static file"
 
 ## Multi Site Basic
 
