@@ -3,6 +3,8 @@ services:
 
   apache2-reverse-proxy:
     build: ../../apache-ajp-docker/
+    environment:
+      - modCFMLBaseDir
     ports:
       - "8080:8080"
       - "8443:8443"
