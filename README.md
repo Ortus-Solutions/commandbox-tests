@@ -220,6 +220,12 @@ Tests:
 - http://site3.com/lucee/admin/server.cfm returns 200 and Lucee admin in all profiles
 - http://site3.com/server.json should return `Site 3 Page is missing: /server.json` and 404 status code
 
+- http://siteMissing.com/ returns `Dude, where's my site?`
+- http://sitemissing.com/index.cfm returns `Dude, where's my site?`
+- http://sitemissing.com/boom returns `Dude, where's my site?`
+- http://sitemissing.com/lucee/admin/web.cfm returns `Dude, where's my site?`
+- http://sitemissing.com/tea returns `Dude, where's my site?`
+
 ## Multi Site with `.site.json` files found by web root convention
 
 [Test Files](multi-site-json-webroot-convention)
