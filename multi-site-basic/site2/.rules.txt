@@ -1,0 +1,1 @@
+path(/site2only) -> set-error(401)

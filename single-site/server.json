@@ -37,6 +37,5 @@
     "scripts":{
         "ajp-up":"!docker-compose -f apache-ajp-proxy/docker-compose.yml up -d --build",
         "ajp-down":"!docker-compose -f apache-ajp-proxy/docker-compose.yml down"
-    },
-    "tra":true
+    }
 }

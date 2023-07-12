@@ -1,0 +1,1 @@
+path(/boom) -> set-error(500)
