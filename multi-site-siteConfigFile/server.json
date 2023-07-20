@@ -1,3 +1,43 @@
 {
-    "name" : "commandbox-test-multi-site-siteConfigFile"
+    "name":"commandbox-test-multi-site-siteConfigFile",
+    "web":{
+        "accessLogEnable":"true",
+        "aliases":{
+            "/js":"javascript"
+        },
+        "allowedExt":"log",
+        "errorPages":{
+            "404":"404.cfm"
+        },
+        "GZIPEnable":"true",
+        "gzipPredicate":"regex('^.*\\.txt$')",
+        "mimeTypes":{
+            "log":"text/plain"
+        },
+        "rules":[
+            "path(/tea)->set-error(418)"
+        ],
+        "rulesFile":".rules.txt",
+        "welcomeFiles":"custom.cfm,index.cfm",
+        "bindings":{
+            "HTTP":{
+                "listen":"80"
+            }
+        }
+    },
+    "sites":{
+        "site1":{
+            "siteConfigFile":"site1.json"
+        },
+        "site2":{
+            "siteConfigFile":"site2.json"
+        },
+        "site3":{
+            "siteConfigFile":"site3.json"
+        },
+        "default":{
+            "siteConfigFile":"default.json"
+        }
+    },
+    "hostAlias":"siteMissing.com"
 }

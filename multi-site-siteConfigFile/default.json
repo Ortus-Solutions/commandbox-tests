@@ -1,0 +1,7 @@
+{
+    "default":true,
+    "webroot":"default",
+    "rules":[
+        "rewrite(/index.cfm)"
+    ]
+}

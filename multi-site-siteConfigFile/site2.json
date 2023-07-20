@@ -1,0 +1,20 @@
+{
+    "hostAlias":"site2.com",
+    "webroot":"site2",
+    "accessLogEnable":"false",
+    "aliases":{
+        "/js":"site2/javascript"
+    },
+    "allowedExt":"log2",
+    "GZIPEnable":"false",
+    "mimeTypes":{
+        "log2":"application/xml"
+    },
+    "rules":[
+        "path(/brad)->set-error(123)"
+    ],
+    "rulesFile":"site2/.rules.txt",
+    "welcomeFiles":"index.cfm",
+    "directoryBrowsing":true,
+    "blockCFAdmin":true
+}
