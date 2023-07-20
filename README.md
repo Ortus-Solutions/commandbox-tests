@@ -195,7 +195,7 @@ Tests:
 - http://site1.com/disallowed-extension.foo should return 403 status code
 - http://site1.com/downloads/ returns 200 and directory listing in development profile, 401 in production profile
 - http://site1.com/lucee/admin/server.cfm returns 200 and Lucee admin in devlopment profile, 404 in production profile
-- http://site1.com/server.json should return `Page is missing: /server.json` and 404 status code
+- http://site1.com/server.json should return `Site 1 Page is missing: /server.json` and 404 status code
 - http://site2.com/ returns "Site2 home page"
 - http://site2.com/js/scripts.js returns "JS file for site 2" with NO content-encoding header
 - http://site2.com/downloads/file.txt should have NO content-encoding header
@@ -203,8 +203,8 @@ Tests:
 - `server info property=sites.site2.accessLogPath` should not exist
 - http://site2.com/tea should return 418 status code
 - http://site2.com/boom should return 500 status code
-- http://site2.com/test.log should return 401
-- http://site2.com/test.log should return `content-type: application/xml` and text `<root>This is the test log2</root>`
+- http://site2.com/test.log should return 403
+- http://site2.com/test.log2 should return `content-type: application/xml` and text `<root>This is the test log2</root>`
 - http://site2.com/downloads/ returns 200 and directory listing in all profiles
 - http://site2.com/lucee/admin/server.cfm returns `Site 2 Page is missing: /lucee/admin/server.cfm` in all profiles
 - http://site2.com/server.json should return `Site 2 Page is missing: /server.json` and 404 status code
@@ -216,7 +216,7 @@ Tests:
 - `server info property=sites.site3.accessLogPath` should exist and have contents
 - http://site3.com/tea should return 418 status code
 - http://site3.com/boom should return 500 status code
-- http://site3.com/downloads/ returns 200 and directory listing in all profiles
+- http://site3.com/downloads/ returns 403 in all profiles
 - http://site3.com/lucee/admin/server.cfm returns 200 and Lucee admin in all profiles
 - http://site3.com/server.json should return `Site 3 Page is missing: /server.json` and 404 status code
 

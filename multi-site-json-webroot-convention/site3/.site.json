@@ -1,0 +1,12 @@
+{
+    "hostAlias":"site3.com",
+    "aliases":{
+        "/js-brad":"javascript"
+    },
+    "errorPages":{
+        "404":"missing.cfm"
+    },
+    "welcomeFiles":"main.cfm,default.cfm,index.cfm",
+    "directoryBrowsing":false,
+    "blockCFAdmin":false
+}
