@@ -1,5 +1,5 @@
 {
-    "name":"commandbox-test-multi-site-default-site",
+    "name":"commandbox-test-multi-site-default-site-no-default",
     "web":{
         "bindings":{
             "HTTP":{
@@ -10,8 +10,7 @@
     "sites":{
         "site1":{
             "hostAlias":"site1.com",
-            "webroot":"site1",
-            "default":true
+            "webroot":"site1"
         },
         "site2":{
             "hostAlias":"site2.com",

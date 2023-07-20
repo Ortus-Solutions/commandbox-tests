@@ -265,6 +265,25 @@ For this test, define default settings in the `web` block and 3 `sites` in the `
 
 Hit site on domain not bound and ensure 404 "site not found" is displayed when there is no default and then ensure the default site is used when one is set.
 
+TESTS
+```
+start server.json
+```
+- http://site1.com/ should return "Site 1"
+- http://site2.com/ should return "Site 2"
+- http://site3.com/ should return "Site 3"
+- http://sitemissing.com/ should return "Site 1"
+
+```
+start server-no-default.json
+```
+- http://site1.com/ should return "Site 1"
+- http://site2.com/ should return "Site 2"
+- http://site3.com/ should return "Site 3"
+- http://sitemissing.com/ should return 404 "Oops! Site Not Found"
+
+
+
 ## Multi Site with bindings
 
 [Test Files](multi-site-bindings)
