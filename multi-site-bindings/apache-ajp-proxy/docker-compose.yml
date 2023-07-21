@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+
+  apache2-reverse-proxy:
+    build: ../../apache-ajp-docker/
+    environment:
+      - modCFMLBaseDir
+    ports:
+      - "8084:8084"
+      - "8081:8081"
+      - "8082:8082"
+      - "8083:8083"
+    volumes:
+      - ./sites-enabled:/etc/apache2/sites-enabled
+      #- /some/place/logs:/var/log/apache2
+      #- /some/place/certs:/etc/apache2/certs
