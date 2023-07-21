@@ -1,6 +1,8 @@
 # Commandbox Tests
 
-A repo of tests suites for CommandBox
+A repo of tests suites for CommandBox.  The sites are already built out and are contained in subfolders.  In most cases, you just need to `cd` to a folder and run `server start`.  For any examples using AJP, you'll also need to run `server run-script ajp-up` to startup the Apache AJP proxy in Docker and then run `server run-script ajp-down` when finished to stop it.  This assumes you have Docker installed.
+
+These tests require the latest version of CommandBox 6.0 and assume you've installed the `commandbox-hostupdater` to help create all the `hosts` file entries while testing.
 
 ## Single Site
 
@@ -48,9 +50,7 @@ Tests:
 - http://singlesite.com/lucee/admin/server.cfm returns 200 and Lucee admin in devlopment profile, 404 in production profile
 - http://singlesite.com/server.json should return `Page is missing: /server.json` and 404 status code
 
-Run `docker-compose -f apache-ajp-proxy/docker-compose.yml up -d` and re-test al the URLs above, but on port 8080, which uses the AJP proxy.
-Then run `docker-compose -f apache-ajp-proxy/docker-compose.yml down`.
-
+Run `server run-script ajp-up` and re-test al the URLs above, but on port 8080, which uses the AJP proxy. Then run `server run-script ajp-down` when finished to stop it.
 
 ## Custom SSL Cert
 
@@ -82,7 +82,7 @@ Test the basic legacy behavior of starting a single site server with basic auth 
 
 [Test Files](client-cert-auth)
 
-Test the basic legacy behavior of starting a single site server with client cert auth and an auth predicate configured
+Test the basic legacy behavior of starting a single site server with client cert auth and an auth predicate configured.  You will need to install the client cert [certs\localtestclientcert.cer](certs\localtestclientcert.cer) into your computer's personal key store so your browser will prompt you to choose it when visiting the site.
 
 ### Matrix
 
@@ -122,7 +122,7 @@ We need every combination of each of these items
 
 [Test Files](modCFML)
 
-Test ModCFML integration
+Test ModCFML integration.  Run `server run-script ajp-up` to startup the Apache AJP proxy in Docker and then run `server run-script ajp-down` when finished to stop it.
 
 ### Matrix
 
@@ -233,19 +233,19 @@ Tests:
 
 [Test Files](multi-site-json-webroot-convention)
 
-Copy the `Multi Site Basic` test, but move all the site-specific settings out of the `server.json` except the web root of each site. Put the site-specific settings should be put in a `.site.json` file in each web root. Edit the relative virtual directory path to now be relative to the webroot (which is the folder the `.site.json` file lives in). All the same tests for `Multi Site Basic` should work here too.
+This test is the same as the `Multi Site Basic` test, but all the site-specific settings have been moved out of the `server.json` except the web root of each site. The site-specific settings have been placed in a `.site.json` file in each web root. Note, it was necessary to edit the relative virtual directory path to now be relative to the webroot (which is the folder the `.site.json` file lives in). All the same tests for `Multi Site Basic` should work here with the same results.
 
 ## Multi Site with explicit `siteConfigFile`
 
 [Test Files](multi-site-siteConfigFile)
 
-Copy the `Multi Site Basic` test, but move all the site-specific settings out of the `server.json` INCLUDING the web root of each site. Put the site-specific settings should be put in `site1.json`, `site2.json`, etc files in a folder above the web roots. Edit the relative virtual directory path to now be relative to the folder each `.site.json` file lives in. The `sites` block in the main `server.json` should use the `siteConfigFile` key to point to the file for each site. All the same tests for `Multi Site Basic` should work.here too.
+This test is the same as `Multi Site Basic` test, but all the site-specific settings have been moved out of the `server.json` INCLUDING the web root of each site. The site-specific settings have been placed in `site1.json`, `site2.json`, etc files in a folder above the web roots. Note it was neccessary to edit the relative virtual directory path to be relative to the folder each `.site.json` file lives in. The `sites` block in the main `server.json` uses the `siteConfigFile` key to point to the file for each site. All the same tests for `Multi Site Basic` should work here with the same results.
 
 ## Multi Site with `siteConfigFiles` file glob pattern
 
 [Test Files](multi-site-siteConfigFiles-globbing)
 
-Copy the `Multi Site Basic` test, but move all the site-specific settings out of the `server.json` INCLUDING the web root of each site. Put the site-specific settings should be put in `site1.json`, `site2.json`, etc files in a `sites-available` folder above the web roots. Remove the `sites` block entirely from the main `server.json` and set a `siteConfigFiles` key with the value `sites-available/*.json`. Edit the relative virtual directory path to now be relative to the folder the `.site.json` files lives in. All the same tests for `Multi Site Basic` should work.here too.
+This test is the same as `Multi Site Basic` test, but all the site-specific settings have been moved out of the `server.json` INCLUDING the web root of each site. The site-specific settings have been placed in `site1.json`, `site2.json`, etc files in a `sites-available` folder above the web roots. We removed the `sites` block entirely from the main `server.json` and set a `siteConfigFiles` key with the value `sites-available/*.json`. Note it was neccessary to edit the relative virtual directory path to now be relative to the folder the site JSON files live in. All the same tests for `Multi Site Basic` should work here with the same results.
 
 ## Multi Site with default site
 
@@ -291,7 +291,7 @@ start server-no-default.json
 
 [Test Files](multi-site-bindings)
 
-Test all the possible ways bindings can be set. We need a dockerFile for Apache again to test the AJP proxy
+Test all the possible ways bindings can be set. Run `server run-script ajp-up` to startup the Apache AJP proxy in Docker and then run `server run-script ajp-down` when finished to stop it.
 
 Add host file entires for
 
@@ -427,21 +427,22 @@ Add the following bindings
 - `sites.site1.ssl` on port 443 with `host` of `site1.com,www.site1.com` and an SSL cert with a common name of `site1.com` and a SAN of `www.site1.com`
 - `sites.site2.ssl` on port 443 with `host` of `site2.com,*.site2.com` and a wildcard SSL cert with a common name of `site2.com` and a SAN of `*.site2.com`
 
+Notes on how I generated the SSL server certs for this test. You don't need to run these commands, the test certs are already present in the `certs` folder.
 ```
 # Generate CA cert and key
-"C:\Program Files\OpenSSL-Win64\bin\openssl" req -new -newkey rsa:2048 -days 3650 -extensions v3_ca -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=Server CA/" -nodes -x509 -sha256 -set_serial 0 -keyout ServerCA.key -out ServerCA.cer
+openssl req -new -newkey rsa:2048 -days 3650 -extensions v3_ca -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=Server CA/" -nodes -x509 -sha256 -set_serial 0 -keyout ServerCA.key -out ServerCA.cer
 
 # Generate request for new site1 cert
-"C:\Program Files\OpenSSL-Win64\bin\openssl" req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site1.com/" -nodes -sha256 -keyout serverCert1-san.key -out csr.csr -config serverCert1-san.cnf
+openssl req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site1.com/" -nodes -sha256 -keyout serverCert1-san.key -out csr.csr -config serverCert1-san.cnf
 
 # Sign new site1 cert
-"C:\Program Files\OpenSSL-Win64\bin\openssl" x509 -req -in csr.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert1-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert1-san.cnf
+openssl x509 -req -in csr.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert1-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert1-san.cnf
 
 # Generate request for new site1 cert
-"C:\Program Files\OpenSSL-Win64\bin\openssl" req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site2.com/" -nodes -sha256 -keyout serverCert2-san.key -out csr2.csr -config serverCert2-san.cnf
+openssl req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site2.com/" -nodes -sha256 -keyout serverCert2-san.key -out csr2.csr -config serverCert2-san.cnf
 
 # Sign new sitee2 cert
-"C:\Program Files\OpenSSL-Win64\bin\openssl" x509 -req -in csr2.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert2-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert2-san.cnf
+openssl x509 -req -in csr2.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert2-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert2-san.cnf
 ```
 
 
