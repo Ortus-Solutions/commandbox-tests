@@ -1,3 +1,28 @@
 {
-    "name" : "commandbox-test-SSL-SNI"
+    "hostAlias":"admin.site2.com",
+    "name":"commandbox-test-SSL-SNI",
+    "sites":{
+        "site1":{
+            "bindings":{
+                "ssl":{
+                    "certfile":"../certs/serverCert1-SAN.pem",
+                    "host":"site1.com,www.site1.com",
+                    "keyfile":"../certs/serverCert1-san.key",
+                    "listen":"443"
+                }
+            },
+            "webroot":"site1"
+        },
+        "site2":{
+            "bindings":{
+                "ssl":{
+                    "certfile":"../certs/serverCert2-SAN.pem",
+                    "host":"site2.com,*.site2.com",
+                    "keyfile":"../certs/serverCert2-san.key",
+                    "listen":"443"
+                }
+            },
+            "webroot":"site2"
+        }
+    }
 }

@@ -1,3 +1,11 @@
 {
-    "name" : "commandbox-test-custom-SSL-cert"
+    "name":"commandbox-test-custom-SSL-cert",
+    "web":{
+        "host":"site1.com",
+        "SSL":{
+            "certfile":"../certs/server-cert.pfx",
+            "enable":"true",
+            "port":"443"
+        }
+    }
 }

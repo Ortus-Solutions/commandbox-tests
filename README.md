@@ -58,6 +58,9 @@ Then run `docker-compose -f apache-ajp-proxy/docker-compose.yml down`.
 
 Test the basic legacy behavior of starting a single site server with a custom SSL cert configured
 
+Tests
+- https://site1.com/ should return 200 status code
+
 ### Matrix
 
 We need every combination of each of these items
@@ -424,7 +427,24 @@ Add the following bindings
 - `sites.site1.ssl` on port 443 with `hostAlias` of `site1.com,www.site1.com` and an SSL cert with a common name of `site1.com` and a SAN of `www.site1.com`
 - `sites.site2.ssl` on port 443 with `hostAlias` of `site2.com,*.site2.com` and a wildcard SSL cert with a common name of `site2.com` and a SAN of `*.site2.com`
 
-We will need to figure out the openssl commands to generate these certs. They can share the same CA cert if we want.
+```
+# Generate CA cert and key
+"C:\Program Files\OpenSSL-Win64\bin\openssl" req -new -newkey rsa:2048 -days 3650 -extensions v3_ca -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=Server CA/" -nodes -x509 -sha256 -set_serial 0 -keyout ServerCA.key -out ServerCA.cer
+
+# Generate request for new site1 cert
+"C:\Program Files\OpenSSL-Win64\bin\openssl" req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site1.com/" -nodes -sha256 -keyout serverCert1-san.key -out csr.csr -config serverCert1-san.cnf
+
+# Sign new site1 cert
+"C:\Program Files\OpenSSL-Win64\bin\openssl" x509 -req -in csr.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert1-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert1-san.cnf
+
+# Generate request for new site1 cert
+"C:\Program Files\OpenSSL-Win64\bin\openssl" req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site2.com/" -nodes -sha256 -keyout serverCert2-san.key -out csr2.csr -config serverCert2-san.cnf
+
+# Sign new sitee2 cert
+"C:\Program Files\OpenSSL-Win64\bin\openssl" x509 -req -in csr2.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert2-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert2-san.cnf
+
+```
+
 
 The following URLs should match the following sites
 
