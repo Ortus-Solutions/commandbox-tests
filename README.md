@@ -441,7 +441,7 @@ openssl x509 -req -in csr.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateseri
 # Generate request for new site1 cert
 openssl req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site2.com/" -nodes -sha256 -keyout serverCert2-san.key -out csr2.csr -config serverCert2-san.cnf
 
-# Sign new sitee2 cert
+# Sign new site2 cert
 openssl x509 -req -in csr2.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert2-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert2-san.cnf
 ```
 
