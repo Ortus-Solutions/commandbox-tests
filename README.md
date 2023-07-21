@@ -424,8 +424,8 @@ Add the following hosts file entries
 
 Add the following bindings
 
-- `sites.site1.ssl` on port 443 with `hostAlias` of `site1.com,www.site1.com` and an SSL cert with a common name of `site1.com` and a SAN of `www.site1.com`
-- `sites.site2.ssl` on port 443 with `hostAlias` of `site2.com,*.site2.com` and a wildcard SSL cert with a common name of `site2.com` and a SAN of `*.site2.com`
+- `sites.site1.ssl` on port 443 with `host` of `site1.com,www.site1.com` and an SSL cert with a common name of `site1.com` and a SAN of `www.site1.com`
+- `sites.site2.ssl` on port 443 with `host` of `site2.com,*.site2.com` and a wildcard SSL cert with a common name of `site2.com` and a SAN of `*.site2.com`
 
 ```
 # Generate CA cert and key
@@ -442,13 +442,12 @@ Add the following bindings
 
 # Sign new sitee2 cert
 "C:\Program Files\OpenSSL-Win64\bin\openssl" x509 -req -in csr2.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert2-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert2-san.cnf
-
 ```
 
 
 The following URLs should match the following sites
 
-- https://site1.com - site1 and the site1 SSL Cert
-- https://www.site1.com - site1 and the site1 SSL Cert
-- https://site2.com - site2 and the site2 SSL Cert
-- https://admin.site2.com - site2 and the site2 SSL Cert
+- https://site1.com - site1 and cert_server_subject contains `CN=site1.com`
+- https://www.site1.com - site1 and cert_server_subject contains `CN=site1.com`
+- https://site2.com - site2 and and cert_server_subject contains `CN=site2.com`
+- https://admin.site2.com - site2 and cert_server_subject contains `CN=site2.com`
