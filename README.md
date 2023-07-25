@@ -8,17 +8,7 @@ These tests require the latest version of CommandBox 6.0 and assume you've insta
 
 [Test Files](single-site)
 
-This basic tests, hits all the core features of CommandBox servers across Lucee, Adobe, and production vs development profiles.  It covers:
-
-- HTTP/SSL/AJP bindings
-- Virtual directories
-- GZip predicates
-- Custom error pages
-- Access logs
-- Custom server rules
-- Custom MIME types
-- Custom welcome files
-- Allowed extensions
+This basic tests, hits all the core features of CommandBox servers across Lucee, Adobe, and production vs development profiles.
 
 ## Custom SSL Cert
 
