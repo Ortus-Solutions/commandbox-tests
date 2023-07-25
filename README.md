@@ -75,13 +75,13 @@ Test the ability to set a default site in multi-site mode, as well as what happe
 
 [Test Files](multi-site-bindings)
 
-Test all the possible ways bindings can be set. Run `server run-script ajp-up` to startup the Apache AJP proxy in Docker and then run `server run-script ajp-down` when finished to stop it.
+Test all the possible ways bindings can be set including the "legacy" syntax as well as the new `bindings` key.  Also test global bindings applying to all sites, as well as per-site bindings.  Test HTTP, SSL, and AJP as well as having multiple ports listened to at the same time.
 
 ## Multi Site with Wildcard bindings
 
 [Test Files](multi-site-wildcard-bindings)
 
-Test all the possible ways hostnames can be bound with wildcards
+Test all the possible ways hostnames can be bound, including exact match, starts-with wildcard, ends-with wildcard, and regex matching of host name.
 
 ## SSL SNI
 

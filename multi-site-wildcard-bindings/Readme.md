@@ -1,6 +1,6 @@
 # Multi Site with Wildcard bindings
 
-Test all the possible ways hostnames can be bound with wildcards
+Test all the possible ways hostnames can be bound, including exact match, starts-with wildcard, ends-with wildcard, and regex matching of host name.
 
 ## Setup
 

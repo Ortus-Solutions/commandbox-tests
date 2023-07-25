@@ -34,7 +34,7 @@ The following URLs should match the following sites
 
 ## Notes
 
-THis is how I generated the SSL server certs for this test. You don't need to run these commands, the test certs are already present in the `certs` folder.
+This is how I generated the SSL server certs for this test. You don't need to run these commands, the test certs are already present in the `certs` folder.
 ```
 # Generate CA cert and key
 openssl req -new -newkey rsa:2048 -days 3650 -extensions v3_ca -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=Server CA/" -nodes -x509 -sha256 -set_serial 0 -keyout ServerCA.key -out ServerCA.cer

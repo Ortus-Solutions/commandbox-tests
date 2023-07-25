@@ -1,6 +1,8 @@
 # Multi Site with bindings
 
-Test all the possible ways bindings can be set. Run `server run-script ajp-up` to startup the Apache AJP proxy in Docker and then run `server run-script ajp-down` when finished to stop it.
+SNI (Server Name Indication) is the ability to have more than on SSL cert configured for a single SSL binding (IP/Port) and for the server to automatically select the correct SSL cert to use based on the incoming host header of the request.  CommandBox will scan the subject common name as well as any Subject Alternative Names (SANs) and automatically register which hostnames each cert applies to.  Wildcard certs are also handled.
+
+Run `server run-script ajp-up` to startup the Apache AJP proxy in Docker and then run `server run-script ajp-down` when finished to stop it.
 
 ## Setup
 
