@@ -1,0 +1,1 @@
+<cfoutput>#server.coldfusion.productName.replace('ColdFusion','Adobe')# #server.lucee.version ?: server.coldfusion.productVersion.replace(',','.','all')#</cfoutput>
