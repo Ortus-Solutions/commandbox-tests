@@ -1,0 +1,9 @@
+{
+    "dependencies":{
+        "testbox":"^5.1.0+2"
+    },
+    "installPaths":{
+        "testbox":"testbox/"
+    },
+    "name":"CommandBox Test Repo"
+}

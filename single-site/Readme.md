@@ -40,7 +40,7 @@ Test the basic legacy behavior of starting a single site server
 - http://singlesite.com/boom should return 500 status code
 - http://singlesite.com/test.log should return `content-type: text/plain` and text "This is the test log"
 - http://singlesite.com/disallowed-extension.foo should return 403 status code
-- http://singlesite.com/downloads/ returns 200 and directory listing in development profile, 401 in production profile
+- http://singlesite.com/downloads/ returns 200 and directory listing in development profile, 403 in production profile
 - http://singlesite.com/lucee/admin/server.cfm returns 200 and Lucee admin in devlopment profile, 404 in production profile
 - http://singlesite.com/server.json should return `Page is missing: /server.json` and 404 status code
 
