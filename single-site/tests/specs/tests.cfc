@@ -20,6 +20,11 @@ component extends="../../../BaseTest" {
 				success( cfhttp, 'home page' )
 			});
 
+			it( "AJP Listener", function(){
+				http url='http://singlesite.com:8080/';
+				success( cfhttp, 'home page' )
+			});
+
 			it( "GZip disabled", function(){
 				http url='http://singlesite.com/js/scripts.js';
 				success( cfhttp, 'JS file' )

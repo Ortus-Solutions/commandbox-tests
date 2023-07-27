@@ -1,6 +1,8 @@
 component extends="../../BaseRunner" {
 
 	function preTask() {
+		startAJP = true;
+
 		fixtures = [
 			'Production Lucee' : {
 				serverConfigFile : resolvePath( '../server.json' ),
@@ -56,4 +58,5 @@ component extends="../../BaseRunner" {
 		];
 
 	}
+
 }

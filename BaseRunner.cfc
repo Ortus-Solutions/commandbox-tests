@@ -1,5 +1,6 @@
 component {
 	property name='CommandService' inject;
+	param startAJP = false;
 
 	function run( boolean skipServer=false ) {
 
@@ -58,4 +59,19 @@ component {
 
 	}
 
+	function preRun() {
+		if( !startAJP ) return;
+
+		print.line( 'Starting Docker AJP Proxy' ).toConsole();
+		command( 'server run-script ajp-up' )
+			.run( returnOutput=true );
+	}
+
+	function postRun() {
+		if( !startAJP ) return;
+
+		print.line( 'Stopping Docker AJP Proxy' ).toConsole();
+		command( 'server run-script ajp-down' )
+			.run( returnOutput=true );
+	}
 }
