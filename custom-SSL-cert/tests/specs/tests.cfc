@@ -2,7 +2,7 @@ component extends="../../../BaseTest" {
 
 	function run(){
 
-		describe( "Single Site", function(){
+		describe( "Custom SSL Cert", function(){
 
 			it( "SSL Listener", function(){
 				try {

@@ -1,18 +1,18 @@
 component {
 	property name='CommandService' inject;
 
-	function run() {
+	function run( boolean skipServer=false ) {
 
 		param variables.fixtures = {};
 
 		fixtures.each( ( testName, t )=>{
 			print.line( testName ).toConsole();
-			runTests( t.serverConfigFile, t.env ?: {} );
+			runTests( t.serverConfigFile, t.env ?: {}, skipServer );
 		} );
 
 	}
 
-	function runTests( required string serverConfigFile, struct env={} ) {
+	function runTests( required string serverConfigFile, struct env={}, boolean skipServer=false ) {
 		// Running resolvePath() inside the clsoure below will resolve to the wrong path since the closure executes inside the CommandService
 		var testboxPath = resolvePath( getDirectoryFromPath( serverConfigFile ) & "/../testbox/" );
 		var specsPath = resolvePath( getDirectoryFromPath( serverConfigFile ) & "/tests/specs" );
@@ -26,14 +26,15 @@ component {
 				systemSettings.setSystemSetting( 'box_server_fusionreactor_enable', false )
 
 				try {
+					if( !skipServer ) {
+						print.line( 'Starting Server [#serverConfigFile#]' ).toConsole();
+						command( 'server start' )
+							.params( serverConfigFile=serverConfigFile )
+							.flags( 'verbose' )
+							.run( returnOutput=true );
 
-					print.line( 'Starting Server [#serverConfigFile#]' ).toConsole();
-					command( 'server start' )
-						.params( serverConfigFile=serverConfigFile )
-						.flags( 'verbose' )
-						.run( returnOutput=true );
-
-					sleep( 2000 )
+						sleep( 2000 )
+					}
 
 					fileSystemUtil.createMapping( '/testbox', testboxPath )
 					var testbox = new testbox.system.TestBox();
@@ -42,12 +43,14 @@ component {
 					getInstance( "CLIRenderer@testbox-commands" ).render( print, results, true )
 					print.toConsole()
 				} finally {
-					print.line( 'Stopping Server [#serverConfigFile#]' ).toConsole();
-					command( 'server stop' )
-						.params( serverConfigFile=serverConfigFile )
-						.run( returnOutput=true );
+					if( !skipServer ) {
+						print.line( 'Stopping Server [#serverConfigFile#]' ).toConsole();
+						command( 'server stop' )
+							.params( serverConfigFile=serverConfigFile )
+							.run( returnOutput=true );
 
-					sleep( 5000 )
+						sleep( 5000 )
+					}
 				}
 
 			}
