@@ -3,7 +3,8 @@
     "web":{
         "host":"site1.com",
         "SSL":{
-            "certfile":"../certs/server-cert.pfx",
+            "certfile":"../certs/serverCert1-san.pfx",
+            "keyPass":"",
             "enable":"true",
             "port":"443"
         }
