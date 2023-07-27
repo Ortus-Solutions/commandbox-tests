@@ -2,6 +2,7 @@ component extends="testbox.system.BaseSpec"{
 
 	function beforeAll() {
 		systemSettings = application.wirebox.getInstance( 'systemSettings' );
+		fileSystemUtil = application.wirebox.getInstance( 'fileSystem' );
 	}
 
 	function success( cfhttp, content='' ) {

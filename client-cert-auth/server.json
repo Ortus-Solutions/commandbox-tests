@@ -3,6 +3,7 @@
     "web":{
         "bindings":{
             "ssl":{
+                "certfile":"../certs/serverCert1-san.pfx",
                 "clientCert":{
                     "CACertFiles":"../certs/TestRootCertificate.cer",
                     "catruststorefile":"../certs/TestRootCertificate.pfx",
