@@ -51,6 +51,7 @@ Need to verify that each setting for each site is picked up separately. Each sit
 - http://site1.com/downloads/ returns 200 and directory listing in development profile, 401 in production profile
 - http://site1.com/lucee/admin/server.cfm returns 200 and Lucee admin in devlopment profile, 404 in production profile
 - http://site1.com/server.json should return `Site 1 Page is missing: /server.json` and 404 status code
+
 - http://site2.com/ returns "Site2 home page"
 - http://site2.com/js/scripts.js returns "JS file for site 2" with NO content-encoding header
 - http://site2.com/downloads/file.txt should have NO content-encoding header
