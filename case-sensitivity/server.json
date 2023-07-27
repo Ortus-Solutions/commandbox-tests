@@ -2,6 +2,9 @@
     "name":"commandbox-test-case-sensitivity",
     "web":{
         "caseSensitivePaths":"false",
-        "host":"site1.com"
+        "host":"site1.com",
+        "http":{
+            "port":80
+        }
     }
 }
