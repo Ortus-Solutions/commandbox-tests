@@ -4,6 +4,18 @@ A repo of tests suites for CommandBox.  The sites are already built out and are 
 
 These tests require the latest version of CommandBox 6.0 and assume you've installed the `commandbox-hostupdater` to help create all the `hosts` file entries while testing.
 
+To run the automated test runner, you can `cd` into a specific folder and run
+```
+task run tests/Runner
+```
+
+To run all tests at once, go to the root of this project and run
+```
+task run TaskRunnerAll
+```
+
+Some of the SSL tests may not work the first time.  They import the SSL cert so it's trusted, but Lucee (CommandBox) must be stopped and restarted after the first time for this to take affect.
+
 ## Single Site
 
 [Test Files](single-site)
