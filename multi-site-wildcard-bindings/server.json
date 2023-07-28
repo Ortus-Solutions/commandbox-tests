@@ -1,5 +1,12 @@
 {
     "name":"commandbox-test-multi-site-wildcard-bindings",
+    "hostAlias":[
+        "site1.net",
+        "www.site1.com",
+        "admin.site1.com",
+        "site5.com",
+        "site15.com"
+    ],
     "sites":{
         "site1":{
             "HTTP":{
@@ -11,7 +18,8 @@
                 "*.site1.com",
                 "~^site[0-9]\\.com$"
             ],
-            "webroot":"site1"
+            "webroot":"site1",
+            "host":"0.0.0.0"
         },
         "site2":{
             "webroot":"site2"
