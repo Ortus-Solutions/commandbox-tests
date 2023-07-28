@@ -42,6 +42,7 @@ openssl req -new -newkey rsa:2048 -days 3650 -extensions v3_ca -subj "/C=US/ST=K
 # Generate request for new site1 cert
 openssl req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=site1.com/" -nodes -sha256 -keyout serverCert1-san.key -out csr.csr -config serverCert1-san.cnf
 
+
 # Sign new site1 cert
 openssl x509 -req -in csr.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert1-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert1-san.cnf
 
@@ -50,4 +51,8 @@ openssl req -newkey rsa:2048 -subj "/C=US/ST=KS/L=Kansas City/O=Ortus/OU=IT/CN=s
 
 # Sign new site2 cert
 openssl x509 -req -in csr2.csr -CA ServerCA.cer -CAkey ServerCA.key -CAcreateserial -out ServerCert2-SAN.pem -days 3065 -sha256 -extensions v3_req -extfile serverCert2-san.cnf
+
+# Create PFX out of cert and key
+openssl pkcs12 -export -out ServerCert-all-SAN.pfx -inkey ServerCert-all-SAN.key -in ServerCert-all-SAN.pem
+
 ```

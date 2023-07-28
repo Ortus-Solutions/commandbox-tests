@@ -1,5 +1,5 @@
 {
-    "name":"multi-site-bindings",
+    "name":"commandbox-tests-multi-site-bindings",
     "sites":{
         "site1":{
             "hostAlias":"site1.com",
@@ -9,7 +9,8 @@
                     "listen":"81"
                 },
                 "SSL":{
-                    "listen":"444"
+                    "listen":"444",
+                    "certFile":"../certs/ServerCert-all-SAN.pfx"
                 },
                 "AJP":{
                     "listen":"8010",
@@ -30,7 +31,8 @@
                     }
                 ],
                 "ssl":{
-                    "listen":"0.0.0.0:446"
+                    "listen":"0.0.0.0:446",
+                    "certFile":"../certs/ServerCert-all-SAN.pfx"
                 },
                 "AJP":{
                     "listen":"0.0.0.0:8011",
@@ -55,7 +57,8 @@
         },
         "SSL":{
             "enable":"true",
-            "port":"443"
+            "port":"443",
+            "certFile":"../certs/ServerCert-all-SAN.pfx"
         },
         "AJP":{
             "enable":"true",
@@ -67,7 +70,8 @@
                 "listen":"0.0.0.0:8080"
             },
             "SSL":{
-                "listen":"0.0.0.0:8443"
+                "listen":"0.0.0.0:8443",
+                "certFile":"../certs/ServerCert-all-SAN.pfx"
             },
             "AJP":{
                 "listen":"0.0.0.0:16009",

@@ -60,7 +60,7 @@ component {
 	}
 
 	function preRun() {
-		if( !startAJP ) return;
+		if( !startAJP || (taskArgs.skipServer ?: false) ) return;
 
 		print.line( 'Starting Docker AJP Proxy' ).toConsole();
 		command( 'server run-script ajp-up' )
@@ -68,7 +68,7 @@ component {
 	}
 
 	function postRun() {
-		if( !startAJP ) return;
+		if( !startAJP || (taskArgs.skipServer ?: false) ) return;
 
 		print.line( 'Stopping Docker AJP Proxy' ).toConsole();
 		command( 'server run-script ajp-down' )
