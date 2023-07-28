@@ -64,6 +64,7 @@ component {
 
 		print.line( 'Starting Docker AJP Proxy' ).toConsole();
 		command( 'server run-script ajp-up' )
+			.inWorkingDirectory( resolvePath( getDirectoryFromPath( getCurrentTemplatePath() ) & "../" ) )
 			.run( returnOutput=true );
 	}
 
@@ -72,6 +73,7 @@ component {
 
 		print.line( 'Stopping Docker AJP Proxy' ).toConsole();
 		command( 'server run-script ajp-down' )
+			.inWorkingDirectory( resolvePath( getDirectoryFromPath( getCurrentTemplatePath() ) & "../" ) )
 			.run( returnOutput=true );
 	}
 }
