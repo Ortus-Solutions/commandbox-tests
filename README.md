@@ -9,6 +9,12 @@ To run the automated test runner, you can `cd` into a specific folder and run
 task run tests/Runner
 ```
 
+You will also need to run
+```
+install
+```
+in the root of the project to install TestBox.
+
 To run all tests at once, go to the root of this project and run
 ```
 task run TaskRunnerAll
