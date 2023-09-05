@@ -20,25 +20,25 @@ component extends="../../../BaseTest" {
 		describe( "Wildcard Bindings Sensitivity", function(){
 
 			it( "site1.com", function(){
-				http url='https://site1.com';
+				http url='https://site1.com' throwOnError=true;
 				success( cfhttp, 'Site 1' )
 				success( cfhttp, 'CN=site1.com' )
 			});
 
 			it( "www.site1.net", function(){
-				http url='https://www.site1.com';
+				http url='https://www.site1.com' throwOnError=true;
 				success( cfhttp, 'Site 1' )
 				success( cfhttp, 'CN=site1.com' )
 			});
 
 			it( "site2.com", function(){
-				http url='https://site2.com';
+				http url='https://site2.com' throwOnError=true;
 				success( cfhttp, 'Site 2' )
 				success( cfhttp, 'CN=site2.com' )
 			});
 
 			it( "admin.site2.com", function(){
-				http url='https://admin.site2.com';
+				http url='https://admin.site2.com' throwOnError=true;
 				success( cfhttp, 'Site 2' )
 				success( cfhttp, 'CN=site2.com' )
 			});

@@ -3,6 +3,8 @@ component extends="testbox.system.BaseSpec"{
 	function beforeAll() {
 		systemSettings = application.wirebox.getInstance( 'systemSettings' );
 		fileSystemUtil = application.wirebox.getInstance( 'fileSystem' );
+		// Stop caching DNS lookups, including hosts file entries
+		createObject( 'java', 'java.lang.System' ).setProperty( 'networkaddress.cache.ttl', 0 )
 	}
 
 	function success( cfhttp, content='' ) {
