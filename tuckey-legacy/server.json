@@ -1,0 +1,17 @@
+{
+    "name":"commandbox-test-tuckey-legacy",
+    "web":{
+        "bindings":{
+            "HTTP":{
+                "listen":"80",
+                "host":"tuckeyLegacy.com"
+            }
+        },
+        "rewrites":{
+            "enable":"true",
+            "config":"urlrewrite.xml",
+            "logEnable":"true"
+        },
+        "servletPassPredicate":"true"
+    }
+}

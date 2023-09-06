@@ -106,3 +106,9 @@ Test all the possible ways hostnames can be bound, including exact match, starts
 [Test Files](SSL-SNI)
 
 SNI (Server Name Indication) is the ability to have more than on SSL cert configured for a single SSL binding (IP/Port) and for the server to automatically select the correct SSL cert to use based on the incoming host header of the request.  CommandBox will scan the subject common name as well as any Subject Alternative Names (SANs) and automatically register which hostnames each cert applies to.  Wildcard certs are also handled.
+
+## Tuckey Legacy
+
+[Test Files](tuckey-legacy)
+
+Use Legacy Tuckey rewrites.  This requires short-circuiting the new ResourceHandler and sending all static files to the servlet.  It also means you don't get the new error pages.

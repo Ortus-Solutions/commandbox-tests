@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN" "http://tuckey.org/res/dtds/urlrewrite4.0.dtd">
+<urlrewrite>
+	<rule>
+		<note>Deny common config files</note>
+		<condition type="request-uri" casesensitive="false" operator="equal">^/hidden/.*$</condition>
+		<from>^/(.+)$</from>
+		<set type="status">404</set>
+		<to type="passthrough" last="true">/404.html</to>
+	</rule>
+</urlrewrite>

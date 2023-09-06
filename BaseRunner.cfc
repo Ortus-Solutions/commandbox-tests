@@ -41,7 +41,7 @@ component {
 					var testbox = new testbox.system.TestBox( options = { coverage : { enabled : false } } );
 					testbox.addDirectories( fileSystemUtil.makePathRelative( specsPath ) );
 					var results = deserializeJSON( testbox.run( reporter="JSON" ) );
-					getInstance( "CLIRenderer@testbox-commands" ).render( print, results, true )
+					getInstance( "CLIRenderer@testbox-cli" ).render( print, results, true )
 					print.toConsole()
 				} finally {
 					if( !skipServer ) {
